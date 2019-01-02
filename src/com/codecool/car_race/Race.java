@@ -55,23 +55,26 @@ public class Race {
     };
     public void printRaceResults(){
         System.out.println("-----------------------------------CARS-----------------------------------");
+        System.out.println("----NAME----------DISTANCE------------------------------------------------");
         for (int i = 0; i < 10 ; i++) {
             Car currentCar = cars.get(i);
-            System.out.println("Name:  " + currentCar.getName() + " | " + currentCar.getDistanceTraveled());
+            System.out.println(currentCar.getName() + " | " + currentCar.getDistanceTraveled() + " km");
         }
 
 
         System.out.println("-----------------------------------MOTORCYCLES-----------------------------------");
+        System.out.println("----NAME----DISTANCE-------------------------------------------------------------");
         for (int i = 0; i < 10; i++) {
             Motorcycle currentMotorCycle = motorCycles.get(i);
-            System.out.println("Name:  " + currentMotorCycle.getName() + " | " + currentMotorCycle.getDistanceTraveled());
+            System.out.println(currentMotorCycle.getName() + " | " + currentMotorCycle.getDistanceTraveled() + " km");
         }
 
 
         System.out.println("-----------------------------------TRUCKS-----------------------------------");
+        System.out.println("NAME--DISTANCE--------------------------------------------------------------");
         for (int i = 0; i < 10 ; i++) {
             Truck currentTruck = trucks.get(i);
-            System.out.println("Name:  " + currentTruck.getTruckName() + " | " + currentTruck.getDistanceTraveled());
+            System.out.println(currentTruck.getTruckName() + " | " + currentTruck.getDistanceTraveled() + " km");
         }
 
 
