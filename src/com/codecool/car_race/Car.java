@@ -1,9 +1,6 @@
 package com.codecool.car_race;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Car implements BasicMechanisms{
+public class Car extends Vehicle implements BasicMechanisms{
     private String[] carNames = new String[]{"Magic",
                                             "Lioness",
                                             "Essence",
@@ -37,29 +34,18 @@ public class Car implements BasicMechanisms{
     };
 
     Car(){
-        setNormalSpeed();
-        name = carNames[(int)(Math.random()*carNames.length)] + " " +  carNames[(int)(Math.random()*carNames.length)];
+        setSpeed();
+        setName(carNames[(int)(Math.random()*carNames.length)] + " " +  carNames[(int)(Math.random()*carNames.length)]);
     }
-
-    private Integer normalSpeed;
-    private String name;
-    private Integer distanceTraveled = 0;
 
 
     private void brokenTruckIsThere(){
-        normalSpeed = 75;
+        setNormalSpeed(75);
     }
 
-    private void setNormalSpeed(){
-        normalSpeed = (int)(Math.random() *(110-80));
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getDistanceTraveled() {
-        return distanceTraveled;
+    private void setSpeed(){
+        setNormalSpeed((int)(Math.random() *(110-80)));
     }
 
 
@@ -68,12 +54,12 @@ public class Car implements BasicMechanisms{
         if (race.isThereABrokenTruck()){
             brokenTruckIsThere();
         } else{
-            setNormalSpeed();
+            setSpeed();
         }
     }
 
     @Override
     public void moveForAnHour() {
-        distanceTraveled += normalSpeed;
+        setDistanceTraveled(getNormalSpeed());
     }
 }

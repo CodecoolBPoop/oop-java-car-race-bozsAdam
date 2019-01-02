@@ -1,6 +1,6 @@
 package com.codecool.car_race;
 
-public class Truck implements BasicMechanisms {
+public class Truck extends Vehicle implements BasicMechanisms {
 
     Truck(){
         setTruckName();
@@ -8,29 +8,19 @@ public class Truck implements BasicMechanisms {
     }
 
     private Integer breakDownTurnsLeft = 0;
-    private Integer speed;
-    private Integer truckName;
-    private Integer distanceTraveled = 0;
 
     private void truckIsBrokenDown(){
         breakDownTurnsLeft = 2;
-        speed = 0;
+        setNormalSpeed(0);
     }
 
 
-    private void setSpeed() {speed = 100;}
+    private void setSpeed() {setNormalSpeed(100);}
 
     private void setTruckName(){
-        truckName = (int)(Math.random()*1000);
+        setName("" + (int)(Math.random()*1000));
     }
 
-    public Integer getTruckName() {
-        return truckName;
-    }
-
-    public Integer getDistanceTraveled() {
-        return distanceTraveled;
-    }
 
     @Override
     public void prepareForLap(Race race) {
@@ -46,6 +36,6 @@ public class Truck implements BasicMechanisms {
 
     @Override
     public void moveForAnHour() {
-        distanceTraveled += speed;
+        setDistanceTraveled(getNormalSpeed());
     }
 }

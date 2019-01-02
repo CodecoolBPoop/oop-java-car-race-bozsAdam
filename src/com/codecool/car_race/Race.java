@@ -3,14 +3,14 @@ package com.codecool.car_race;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Race {
+class Race {
 
     private List<Car> cars = new ArrayList<>();
     private List<Truck> trucks = new ArrayList<>();
     private List<Motorcycle> motorCycles = new ArrayList<>();
     private boolean isThereABrokenTruck = false;
 
-    public boolean isThereABrokenTruck() {
+    boolean isThereABrokenTruck() {
         return isThereABrokenTruck;
     }
 
@@ -19,25 +19,25 @@ public class Race {
         isThereABrokenTruck = thereABrokenTruck;
     }
 
-    public void addCar() {
+    void addCar() {
         Car newCar = new Car();
         cars.add(newCar);
     }
 
 
-    public void addTruck(){
+    void addTruck(){
         Truck newTruck = new Truck();
         trucks.add(newTruck);
     }
 
 
-    public void addMotorCycle(){
+    void addMotorCycle(){
         Motorcycle newMotor = new Motorcycle();
         motorCycles.add(newMotor);
     }
 
 
-    public void simulateRace(){
+    void simulateRace(){
         for (int i = 0; i < 50 ; i++) {
             Weather.setRaining();
             for (int j = 0; j < 10; j++) {
@@ -52,8 +52,9 @@ public class Race {
                 currentTruck.moveForAnHour();
             }
         }
-    };
-    public void printRaceResults(){
+    }
+
+    void printRaceResults(){
         System.out.println("-----------------------------------CARS-----------------------------------");
         System.out.println("----NAME----------DISTANCE------------------------------------------------");
         for (int i = 0; i < 10 ; i++) {
@@ -74,7 +75,7 @@ public class Race {
         System.out.println("NAME--DISTANCE--------------------------------------------------------------");
         for (int i = 0; i < 10 ; i++) {
             Truck currentTruck = trucks.get(i);
-            System.out.println(currentTruck.getTruckName() + " | " + currentTruck.getDistanceTraveled() + " km");
+            System.out.println(currentTruck.getName() + " | " + currentTruck.getDistanceTraveled() + " km");
         }
 
 
@@ -84,6 +85,6 @@ public class Race {
         } else{
             System.out.println("There is no broken truck");
         }
-    };
+    }
 
 }

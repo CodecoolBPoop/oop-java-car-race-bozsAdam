@@ -1,6 +1,6 @@
 package com.codecool.car_race;
 
-public class Motorcycle implements BasicMechanisms {
+public class Motorcycle extends Vehicle implements BasicMechanisms {
     public static int getMotorCycleNumber() {
         return motorCycleNumber;
     }
@@ -9,31 +9,18 @@ public class Motorcycle implements BasicMechanisms {
 
     Motorcycle(){
         motorCycleNumber += 1;
-        name = "Motorcycle" + motorCycleNumber;
-        setNormalSpeed();
+        setName("Motorcycle" + motorCycleNumber);
+        setSpeed();
     }
-
-    private Integer normalSpeed;
-    private String name;
-    private Integer distanceTraveled = 0;
 
 
     private void itIsRaining(){
-        normalSpeed -= (int)(Math.random() * 45);
+        setNormalSpeed(-(int)(Math.random() * 45));
     }
 
 
-    private void setNormalSpeed(){
-        normalSpeed = 100;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getDistanceTraveled() {
-        return distanceTraveled;
+    private void setSpeed(){
+        setNormalSpeed(100);
     }
 
 
@@ -42,12 +29,13 @@ public class Motorcycle implements BasicMechanisms {
         if(Weather.isRaining()){
             itIsRaining();
         } else{
-            setNormalSpeed();
+            setSpeed();
         }
     }
 
+
     @Override
     public void moveForAnHour() {
-        distanceTraveled += normalSpeed;
+        setDistanceTraveled(getNormalSpeed());
     }
 }
