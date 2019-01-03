@@ -45,7 +45,7 @@ public class Car extends Vehicle implements BasicMechanisms{
 
 
     private void setSpeed(){
-        setNormalSpeed((int)(Math.random() *(110-80)));
+        setNormalSpeed(80+((int)(Math.random()*30)));
     }
 
 

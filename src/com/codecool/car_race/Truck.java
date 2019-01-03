@@ -29,6 +29,7 @@ public class Truck extends Vehicle implements BasicMechanisms {
             race.setThereABrokenTruck(true);
         } else if(breakDownTurnsLeft == 0){
             setSpeed();
+            race.setThereABrokenTruck(false);
         } else{
             breakDownTurnsLeft -=1;
         }

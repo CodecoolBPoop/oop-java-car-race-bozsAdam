@@ -1,13 +1,13 @@
 package com.codecool.car_race;
 
+import sun.text.normalizer.VersionInfo;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Race {
-
-    private List<Car> cars = new ArrayList<>();
-    private List<Truck> trucks = new ArrayList<>();
-    private List<Motorcycle> motorCycles = new ArrayList<>();
+    private List<Vehicle> vehicles = new ArrayList<>();
     private boolean isThereABrokenTruck = false;
 
     boolean isThereABrokenTruck() {
@@ -19,37 +19,20 @@ class Race {
         isThereABrokenTruck = thereABrokenTruck;
     }
 
-    void addCar() {
-        Car newCar = new Car();
-        cars.add(newCar);
+    public void addVehicles(int numberTimes){
+        for (int i = 0; i < numberTimes; i++) {
+            vehicles.add(new Car());
+            vehicles.add(new Motorcycle());
+            vehicles.add(new Truck());
+        }
     }
-
-
-    void addTruck(){
-        Truck newTruck = new Truck();
-        trucks.add(newTruck);
-    }
-
-
-    void addMotorCycle(){
-        Motorcycle newMotor = new Motorcycle();
-        motorCycles.add(newMotor);
-    }
-
 
     void simulateRace(){
         for (int i = 0; i < 50 ; i++) {
             Weather.setRaining();
-            for (int j = 0; j < 10; j++) {
-                Car currentCar = cars.get(j);
-                Motorcycle currentMotorCycle = motorCycles.get(j);
-                Truck currentTruck = trucks.get(j);
-                currentCar.prepareForLap(this);
-                currentMotorCycle.prepareForLap(this);
-                currentTruck.prepareForLap(this);
-                currentCar.moveForAnHour();
-                currentMotorCycle.moveForAnHour();
-                currentTruck.moveForAnHour();
+            for (int j = 0; j < vehicles.size(); j++) {
+                vehicles.get(j).prepareForLap(this);
+                vehicles.get(j).moveForAnHour();
             }
         }
     }
@@ -57,27 +40,17 @@ class Race {
     void printRaceResults(){
         System.out.println("-----------------------------------CARS-----------------------------------");
         System.out.println("----NAME----------DISTANCE------------------------------------------------");
-        for (int i = 0; i < 10 ; i++) {
-            Car currentCar = cars.get(i);
-            System.out.println(currentCar.getName() + " | " + currentCar.getDistanceTraveled() + " km");
-        }
-
+        vehicles.stream().filter(vehicle -> vehicle instanceof Car).forEach(vehicle -> System.out.println(vehicle.getName() + " | " + vehicle.getDistanceTraveled() + " km"));
 
         System.out.println("-----------------------------------MOTORCYCLES-----------------------------------");
         System.out.println("----NAME----DISTANCE-------------------------------------------------------------");
-        for (int i = 0; i < 10; i++) {
-            Motorcycle currentMotorCycle = motorCycles.get(i);
-            System.out.println(currentMotorCycle.getName() + " | " + currentMotorCycle.getDistanceTraveled() + " km");
-        }
+        vehicles.stream().filter(vehicle -> vehicle instanceof Motorcycle).forEach(vehicle -> System.out.println(vehicle.getName() + " | " + vehicle.getDistanceTraveled() + " km"));
+
 
 
         System.out.println("-----------------------------------TRUCKS-----------------------------------");
         System.out.println("NAME--DISTANCE--------------------------------------------------------------");
-        for (int i = 0; i < 10 ; i++) {
-            Truck currentTruck = trucks.get(i);
-            System.out.println(currentTruck.getName() + " | " + currentTruck.getDistanceTraveled() + " km");
-        }
-
+        vehicles.stream().filter(vehicle -> vehicle instanceof Truck).forEach(vehicle -> System.out.println(vehicle.getName() + " | " + vehicle.getDistanceTraveled() + " km"));
 
         System.out.println("-----------------------------------BROKENTRUCK?-----------------------------------");
         if(isThereABrokenTruck){

@@ -1,6 +1,6 @@
 package com.codecool.car_race;
 
-abstract class Vehicle {
+abstract class Vehicle implements BasicMechanisms{
     private Integer normalSpeed;
     private String name;
     private Integer distanceTraveled = 0;
